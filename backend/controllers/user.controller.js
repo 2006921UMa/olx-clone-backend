@@ -7,7 +7,8 @@ const User = db.user;
 // Criar novo utilizador
 exports.createUser = async (req, res) => {
   try {
-    const { name, email, password, telefone, genero, isAdmin, foto_perfil } = req.body;
+    const { name, email, password, telefone, genero, isAdmin, foto_perfil } =
+      req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Campos obrigatórios em falta." });
@@ -22,16 +23,17 @@ exports.createUser = async (req, res) => {
       telefone: telefone || null,
       genero: genero || null,
       isAdmin: isAdmin || 0,
-      foto_perfil: foto_perfil || "default.png" // frontend/img/utilizador
+      foto_perfil: foto_perfil || "default.png", // frontend/img/utilizador
     });
 
-    res.status(201).json({ message: "Utilizador criado com sucesso.", user: newUser });
+    res
+      .status(201)
+      .json({ message: "Utilizador criado com sucesso.", user: newUser });
   } catch (err) {
     console.error("Erro ao criar utilizador:", err);
     res.status(500).json({ message: "Erro ao criar utilizador." });
   }
 };
-
 
 // Mostrar perfil do utilizador autenticado
 exports.getProfile = async (req, res) => {
@@ -99,6 +101,9 @@ exports.getAllUsers = async (req, res) => {
 // Obter utilizador por ID
 exports.getUserById = async (req, res) => {
   try {
+    let id = req.params.id;
+    if (id === "me") id = req.user.id;
+
     const user = await User.findByPk(req.params.id, {
       attributes: { exclude: ["password"] },
     });
@@ -115,7 +120,12 @@ exports.getUserById = async (req, res) => {
 // Atualizar utilizador (próprio ou admin)
 exports.updateUser = async (req, res) => {
   try {
-    const id = req.params.id;
+    // const id = req.params.id;
+
+    let id = req.params.id;
+    // Se o id for "me", usa o id do utilizador autenticado
+    if (id === "me") id = req.user.id;
+
     const user = await User.findByPk(id);
     if (!user)
       return res.status(404).json({ message: "Utilizador não encontrado." });
@@ -136,7 +146,7 @@ exports.updateUser = async (req, res) => {
       telefone,
       genero,
       isAdmin: novoNivel,
-      foto_perfil
+      foto_perfil,
     } = req.body;
 
     if (name) user.name = name;
@@ -144,7 +154,7 @@ exports.updateUser = async (req, res) => {
     if (telefone !== undefined) user.telefone = telefone;
     if (genero !== undefined) user.genero = genero;
     if (foto_perfil !== undefined) user.foto_perfil = foto_perfil;
-    if (typeof novoNivel !== 'undefined' && isAdmin) {
+    if (typeof novoNivel !== "undefined" && isAdmin) {
       // Apenas admins podem alterar o nível
       user.isAdmin = novoNivel;
     }
@@ -160,10 +170,12 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-
 // Apagar utilizador (admin)
 exports.deleteUser = async (req, res) => {
   try {
+    let id = req.params.id;
+    if (id === "me") id = req.user.id;
+
     const user = await User.findByPk(req.params.id);
     if (!user)
       return res.status(404).json({ message: "Utilizador não encontrado." });

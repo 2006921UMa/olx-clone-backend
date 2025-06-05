@@ -13,6 +13,22 @@ module.exports = (sequelize, DataTypes) => {
         },
         comment: "Classificação de 1 a 5 estrelas",
       },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id",
+        },
+      },
+      ad_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "ads",
+          key: "id",
+        },
+      },
     },
     {
       tableName: "ratings",
@@ -22,16 +38,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Rating.associate = (models) => {
     Rating.belongsTo(models.user, {
-      foreignKey: {
-        allowNull: false,
-      },
+      foreignKey: "user_id",
       onDelete: "CASCADE",
     });
-
     Rating.belongsTo(models.ad, {
-      foreignKey: {
-        allowNull: false,
-      },
+      foreignKey: "ad_id",
       onDelete: "CASCADE",
     });
   };
