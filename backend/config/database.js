@@ -18,7 +18,7 @@ const sequelize = new Sequelize(
     dialect: process.env.DB_DIALECT, // usar valor do .env
     logging: false,
 
-    //Ativar isto apenas se for PostgreSQL + SSL (ex: Render)
+    // Ativar isto apenas se for PostgreSQL + SSL (ex: Render)
     dialectOptions: {
       ssl: {
         require: true,
