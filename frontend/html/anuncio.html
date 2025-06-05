@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes do Anúncio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">OLX Clone</a>
+
+        <div class="container mt-3">
+          <div class="d-flex justify-content-end">
+            <a
+              href="../index.html"
+              class="btn btn-outline-secondary btn-sm"
+              style="position: fixed; top: 10px; right: 10px; z-index: 9999">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-5" id="anuncio-detalhes">
+      <!-- Conteúdo dinâmico será carregado aqui -->
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+      <p>© 2025 OLX Clone - Projeto Académico</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const id = new URLSearchParams(window.location.search).get("id");
+        const container = document.getElementById("anuncio-detalhes");
+
+        if (!id) {
+          container.innerHTML =
+            "<p class='text-danger'>ID do anúncio em falta.</p>";
+          return;
+        }
+
+        fetch(`http://localhost:3000/api/ads/${id}`)
+          .then((res) => res.json())
+          .then((ad) => {
+            const imagem = ad.image
+              ? ad.image
+              : `https://picsum.photos/600/400?random=${ad.id}`;
+
+            container.innerHTML = `
+            <div class="row">
+              <div class="col-md-6">
+                <img src="${imagem}" class="img-fluid rounded" alt="${
+              ad.title
+            }">
+              </div>
+              <div class="col-md-6">
+                <h2>${ad.title}</h2>
+                <h4 class="text-success">€${ad.price}</h4>
+                <p>${ad.description}</p>
+                <hr>
+                <h5>Informações do Vendedor</h5>
+                <p><strong>Nome:</strong> ${ad.user?.name || "Desconhecido"}</p>
+                <p><strong>Localização:</strong> ${
+                  ad.location || "Não definida"
+                }</p>
+                <p><strong>Categoria:</strong> ${
+                  ad.category?.name || "Sem categoria"
+                }</p>
+                <p><strong>ID do Anúncio:</strong> ${ad.id}</p>
+              </div>
+            </div>
+          `;
+          })
+          .catch((err) => {
+            console.error("Erro ao carregar anúncio:", err);
+            container.innerHTML =
+              "<p class='text-danger'>Erro ao carregar o anúncio.</p>";
+          });
+      });
+    </script>
+  </body>
+</html>

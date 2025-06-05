@@ -1,0 +1,9 @@
+/* dashboard_user.css → gestão de painéis, tabelas, layout responsivo */
+/* css/chat.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+.card {
+  margin-top: 20px;
+}

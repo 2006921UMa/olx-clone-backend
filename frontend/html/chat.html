@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mensagens</title>
+    <link rel="stylesheet" href="../css/chat.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">OLX Clone</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" id="voltar-anuncio" href="#"
+                >Voltar_ao _Anúncio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard_user.html">Conta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="logout()">Sair</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container mt-5">
+      <h3 id="titulo-chat" class="text-center mb-4">
+        Chat do Anúncio <span id="titulo-anuncio" class="text-primary"></span>
+      </h3>
+      <div class="text-center mb-3">
+        <img
+          id="imagem-anuncio"
+          class="img-fluid img-anuncio"
+          src=""
+          alt="Imagem do Anúncio"
+        />
+      </div>
+      <div class="mb-3 text-center">
+        <strong>Utilizador autenticado:</strong>
+        <span id="nome-utilizador" class="text-success"></span>
+      </div>
+      <div
+        id="mensagens"
+        class="border p-3 mb-3"
+        style="height: 300px; overflow-y: auto"
+      ></div>
+      <form id="form-chat">
+        <div class="mb-3">
+          <textarea
+            class="form-control"
+            id="texto"
+            placeholder="Escreve a tua mensagem..."
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <!-- <a id="voltar-anuncio" class="btn btn-secondary ms-2">Voltar ao Anúncio</a> -->
+      </form>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+      <p>© 2025 OLX Clone - Projeto Académico</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/chat.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+      function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("nome");
+        window.location.href = "../index.html";
+      }
+
+      // Preencher imagem e botão "Voltar ao Anúncio" (usa adId do chat.js)
+      window.addEventListener("DOMContentLoaded", function () {
+        const anuncioImg = document.getElementById("imagem-anuncio");
+        const voltarBtn = document.getElementById("voltar-anuncio");
+        if (typeof adId !== "undefined" && adId && voltarBtn) {
+          voltarBtn.href = `anuncio.html?id=${adId}`;
+          fetch(`${API_BASE}/api/ads/${adId}`)
+            .then((res) => res.json())
+            .then((anuncio) => {
+              const tituloElem = document.getElementById("titulo-anuncio");
+              if (tituloElem) {
+                tituloElem.textContent = anuncio.title || "Anúncio";
+              }
+              anuncioImg.src = anuncio.image
+                ? anuncio.image.startsWith("http")
+                  ? anuncio.image
+                  : `/uploads/${anuncio.image}`
+                : "https://via.placeholder.com/400x200?text=Sem+Imagem";
+            });
+        }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="container mt-4">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">OLX Clone</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="log.html">Actualizar Password</a></li>
+          <li class="nav-item"><a class="nav-link" href="sistema.html">Sistema</a></li>
+          <li class="nav-item"><a class="nav-link" href="log.html">Log</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard_user.html">Voltar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TÍTULO -->
+  <h2 class="mt-4">Bem-vindo, <span id="admin-nome"></span></h2>
+  <div id="admin-info" class="text-center mt-3 mb-4"></div>
+
+  <!-- CARDS PRINCIPAIS -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h4>Utilizadores</h4>
+        <div id="tabela-utilizadores">Carregar utilizadores...</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h4>Anúncios</h4>
+        <div id="tabela-anuncios">Carregar anúncios...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    <p>© 2025 OLX Clone - Projeto Académico</p>
+  </footer>
+
+  <!-- MODAL UTILIZADOR -->
+  <div class="modal fade" id="modalUtilizador" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="form-utilizador">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Utilizador</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="utilizador-id" />
+            <div class="mb-3">
+              <label for="utilizador-nome" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="utilizador-nome" required />
+            </div>
+            <div class="mb-3">
+              <label for="utilizador-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="utilizador-email" required />
+            </div>
+            <div class="mb-3">
+              <label for="utilizador-password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="utilizador-password" />
+            </div>
+            <div class="mb-3">
+              <label for="utilizador-telefone" class="form-label">Telefone</label>
+              <input type="text" class="form-control" id="utilizador-telefone" />
+            </div>
+            <div class="mb-3">
+              <label for="utilizador-telemovel" class="form-label">Telemóvel</label>
+              <input type="text" class="form-control" id="utilizador-telemovel">
+            </div>
+            <div class="mb-3">
+              <label for="utilizador-nivel" class="form-label">Nível</label>
+              <select class="form-control" id="utilizador-nivel" required>
+                <option value="0">Utilizador</option>
+                <option value="1">Operador</option>
+                <option value="2">Supervisor</option>
+                <option value="3">Gestor</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="utilizador-genero" class="form-label">Género</label>
+              <select class="form-control" id="utilizador-genero">
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+                <option value="O">Outro</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="utilizador-foto" class="form-label">Foto (nome do ficheiro)</label>
+              <input type="text" class="form-control" id="utilizador-foto" placeholder="ex: gestor1.jpg">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/obterNivelAdmin.js"></script>
+  <script src="../js/dashboard.utilizadores.js"></script>
+  <script src="../js/dashboard.anuncios.js"></script>
+
+</body>
+</html>

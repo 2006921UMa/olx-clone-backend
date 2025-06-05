@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password":"892150",
+    "database": "olx_clone",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
+

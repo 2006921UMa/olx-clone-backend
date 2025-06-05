@@ -1,0 +1,39 @@
+    /* css/chat.css */
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .card {
+        margin-top: 20px;
+    }
+
+    .mensagem-recebida {
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        max-width: 75%;
+        align-self: flex-start;
+    }
+
+    .mensagem-enviada {
+        background-color: #d1e7dd;
+        border-radius: 8px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        max-width: 75%;
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    #mensagens {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .img-anuncio {
+        max-height: 180px;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }

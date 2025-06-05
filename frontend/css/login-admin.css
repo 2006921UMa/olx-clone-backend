@@ -1,0 +1,9 @@
+/* login-admin.css → foco em formulários, inputs */
+/* css/login-admin.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+.card {
+  margin-top: 20px;
+}

@@ -1,0 +1,37 @@
+/* Geral estilos */
+/* css/styes.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+footer {
+  margin-top: 50px;
+}
+img.perfil {
+  width: 100px;
+  border-radius: 50%;
+}
+#categorias-grid .col {
+  flex: 0 0 12%;
+  max-width: 7%;
+  padding: 0.1rem;
+}
+
+#categorias-grid .card {
+  font-size: 0.5rem;
+  border-radius: 0.2rem;
+  box-shadow: none;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+#categorias-grid .card img {
+  max-height: 8px; 
+  object-fit: contain;
+  margin-bottom: 0.2rem;
+}
+
+#categorias-grid .card-title {
+  font-size: 0.55rem;
+  margin: 0;
+}

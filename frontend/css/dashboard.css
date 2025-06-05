@@ -1,0 +1,9 @@
+/* dashboard.css → gestão de painéis, tabelas, layout responsivo */
+/* css/dashboard.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+.card {
+  margin-top: 20px;
+}

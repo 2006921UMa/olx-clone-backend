@@ -1,0 +1,13 @@
+/* Perfil */
+/* css/perfil.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+footer {
+  margin-top: 50px;
+}
+img.perfil {
+  width: 100px;
+  border-radius: 50%;
+}

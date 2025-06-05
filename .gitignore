@@ -1,0 +1,18 @@
+# .gitignore -> ignore
+# Ignorar ficheiros e pastas comuns de Node.js
+node_modules/
+.env
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar pastas de output
+dist/
+build/
+
+# Ignorar ficheiros temporários do sistema/editor
+.vscode/
+.idea/
+*.swp
