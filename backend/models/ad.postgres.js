@@ -1,8 +1,7 @@
 // models/ad.postgres.js
 
 module.exports = (sequelize, DataTypes) => {
-  const Ad = sequelize.define(
-    "ad",
+  const Ad = sequelize.define("ad",
     {
       title: {
         type: DataTypes.STRING(150),

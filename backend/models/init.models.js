@@ -50,7 +50,7 @@ Object.keys(db).forEach(modelName => {
 
 // console.log('Modelos carregados:', Object.keys(db));
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db.sequelize = sequelize; // é o molde ou "classe"
+db.Sequelize = Sequelize; // é o objecto ou instância (tudo feito na hora)
 
 module.exports = db;
